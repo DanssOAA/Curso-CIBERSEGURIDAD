@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso de Ciberseguridad PRODAC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --sidebar-width: 280px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fb;
+            color: var(--dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+            margin-right: 15px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .course-info {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* Main Content Styles */
+        .container {
+            display: flex;
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        /* Sidebar Styles */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: white;
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            height: calc(100vh - 80px);
+            position: sticky;
+            top: 80px;
+        }
+        
+        .progress-container {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--success);
+            width: 30%;
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+        
+        .module-list {
+            list-style: none;
+        }
+        
+        .module-item {
+            margin-bottom: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .module-item a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .module-item a:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        
+        .module-item.active {
+            border-left: 4px solid var(--secondary);
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        
+        .module-item.active a {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .module-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+        
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            margin: 20px;
+            border-radius: 10px;
+        }
+        
+        .module-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        .module-content {
+            margin-bottom: 30px;
+        }
+        
+        .content-section {
+            margin-bottom: 25px;
+        }
+        
+        .content-section h3 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .content-section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        .checklist {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .checklist h4 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .checklist ul {
+            list-style: none;
+        }
+        
+        .checklist li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .checklist i {
+            color: var(--success);
+            margin-right: 10px;
+            margin-top: 4px;
+        }
+        
+        /* Quiz Styles */
+        .quiz-container {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .quiz-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .question {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .option:hover {
+            background: #e9ecef;
+        }
+        
+        .option input {
+            margin-right: 10px;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                top: 0;
+                margin-bottom: 20px;
+            }
+            
+            .main-content {
+                margin: 0 20px 20px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+        }
+        
+        .abstract {
+            background: #e8f4fc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .keyword {
+            background: var(--secondary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Flip Cards */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .card {
+            height: 200px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        
+        .card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .card-front {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+        
+        .card-front i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .card-back {
+            background: white;
+            color: var(--dark);
+            transform: rotateY(180deg);
+            text-align: left;
+            overflow-y: auto;
+        }
+        
+        .card-back ul {
+            padding-left: 20px;
+        }
+        
+        .card-back li {
+            margin-bottom: 8px;
+        }
+        
+        /* Page Navigation */
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* Module Content Styles */
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .module-number {
+            background: var(--secondary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .scenario {
+            background: #fff8e1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .scenario h4 {
+            color: var(--warning);
+            margin-bottom: 10px;
+        }
+        
+        /* Quiz specific styles */
+        .quiz-option.correct {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .quiz-option.incorrect {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .quiz-feedback {
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .feedback-correct {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .feedback-incorrect {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.6);
+            }
+
+            /* Contenedor del modal */
+            .modal-content {
+            background: #fff;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 900px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.4);
+            }
+
+            /* Botón de cerrar */
+            .close {
+            color: #333;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            margin: 8px 16px;
+            cursor: pointer;
+            }
+            .close:hover {
+            color: #e74c3c;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <h1>Curso de Ciberseguridad PRODAC</h1>
+            </div>
+            <div class="course-info">
+                <p>Para Usuarios No Técnicos | Área: Programa Interno</p>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <aside class="sidebar">
+            <div class="progress-container">
+                <h3>Progreso del Curso</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <p id="progress-text">0% Completado</p>
+            </div>
+            
+            <ul class="module-list" id="module-list">
+                <li class="module-item active" data-page="home">
+                    <a href="#">
+                        <i class="module-icon fas fa-home"></i>
+                        <span>Página de Inicio</span>
+                    </a>
+                </li>
+                <li class="module-item" data-page="module1">
+                    <a href="#">
+                        <i class="module-icon fas fa-1"></i>
+                        <span>Módulo 1: Introducción y responsabilidades</span>
+                    </a>
+                </li>
+                <li class="module-item" data-page="module2">
+                    <a href="#">
+                        <i class="module-icon fas fa-2"></i>
+                        <span>Módulo 2: Tu cuenta, contraseñas y 2FA</span>
+                    </a>
+                </li>
+                <li class="module-item" data-page="module3">
+                    <a href="#">
+                        <i class="module-icon fas fa-3"></i>
+                        <span>Módulo 3: Correo e Internet sin trampas</span>
+                    </a>
+                </li>
+                <li class="module-item" data-page="module4">
+                    <a href="#">
+                        <i class="module-icon fas fa-4"></i>
+                        <span>Módulo 4: Archivos, Excel, USB y tu equipo</span>
+                    </a>
+                </li>
+                <li class="module-item" data-page="module5">
+                    <a href="#">
+                        <i class="module-icon fas fa-5"></i>
+                        <span>Módulo 5: Amenazas frecuentes</span>
+                    </a>
+                </li>
+                <li class="module-item" data-page="module6">
+                    <a href="#">
+                        <i class="module-icon fas fa-6"></i>
+                        <span>Módulo 6: Llamadas y mensajería</span>
+                    </a>
+                </li>
+                <li class="module-item" data-page="module7">
+                    <a href="#">
+                        <i class="module-icon fas fa-7"></i>
+                        <span>Módulo 7: Actuación ante incidentes</span>
+                    </a>
+                </li>
+                <li class="module-item" data-page="quiz">
+                    <a href="#">
+                        <i class="module-icon fas fa-question-circle"></i>
+                        <span>Evaluación Final</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        
+        <main class="main-content">
+            <!-- Página de Inicio -->
+            <div id="home" class="page active">
+                <h2 class="module-title">Bienvenido al Curso de Ciberseguridad PRODAC</h2>
+                
+                <div class="abstract">
+                    <h3>Resumen del Curso</h3>
+                    <p>Este curso introduce, en lenguaje sencillo, los hábitos y decisiones diarias que mantienen segura la información de PRODAC. Combina reglas de la política interna con prácticas de los afiches de concienciación.</p>
+                    
+                    <div class="keywords">
+                        <span class="keyword">ciberseguridad</span>
+                        <span class="keyword">contraseñas</span>
+                        <span class="keyword">phishing</span>
+                        <span class="keyword">ransomware</span>
+                        <span class="keyword">USB</span>
+                        <span class="keyword">Excel</span>
+                        <span class="keyword">2FA</span>
+                        <span class="keyword">http/https</span>
+                        <span class="keyword">cookies</span>
+                        <span class="keyword">vishing</span>
+                        <span class="keyword">smishing</span>
+                    </div>
+                </div>
+                
+                <div class="module-content">
+                    <div class="content-section">
+                        <h3>Objetivos del Curso</h3>
+                        <p>Al finalizar este curso, serás capaz de:</p>
+                        <ul>
+                            <li>Identificar y prevenir amenazas comunes de ciberseguridad</li>
+                            <li>Aplicar buenas prácticas en el manejo de cuentas y contraseñas</li>
+                            <li>Reconocer intentos de phishing y otras técnicas de ingeniería social</li>
+                            <li>Utilizar de forma segura el correo, Internet y dispositivos USB</li>
+                            <li>Actuar adecuadamente ante incidentes de seguridad</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>Estructura del Curso</h3>
+                        <p>El curso está organizado en 7 módulos con contenido teórico y práctico:</p>
+                        <ol>
+                            <li>Introducción y responsabilidades</li>
+                            <li>Tu cuenta, tus contraseñas y 2FA</li>
+                            <li>Correo e Internet sin trampas</li>
+                            <li>Archivos, Excel, USB y tu equipo</li>
+                            <li>Amenazas frecuentes (explicadas para usuarios)</li>
+                            <li>Llamadas, WhatsApp y mensajería</li>
+                            <li>Cuando algo pasa: actuación y qué hace PRODAC</li>
+                        </ol>
+                        <p>Al final hay una evaluación de 25 preguntas para verificar tu comprensión.</p>
+                    </div>
+                    
+                    <div class="checklist">
+                        <h4>Antes de comenzar</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Asegúrate de tener al menos 30 minutos sin interrupciones</li>
+                            <li><i class="fas fa-check-circle"></i> Ten a mano tu computadora para practicar los conceptos</li>
+                            <li><i class="fas fa-check-circle"></i> Prepara cualquier pregunta que quieras hacer al instructor</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Botón -->
+                    <button class="btn btn-outline" onclick="openPDFModal()">
+                    <i class="fas fa-file-alt"></i> Ver Temario Completo
+                    </button>
+
+                    <!-- Modal oculto -->
+                    <div id="pdfModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closePDFModal()">&times;</span>
+                        <iframe id="pdfFrame"
+                                src="https://docs.google.com/document/d/14a4UkL_QfrFIvdjS9nAo0iskMmeXK3lg/preview"
+                                style="width:100%; height:80vh; border:none;"
+                                allowfullscreen></iframe>
+                    </div>
+                    </div>
+
+
+                    <button class="btn btn-primary" onclick="showPage('module1')">
+                        Comenzar Módulo 1 <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Módulo 1 -->
+            <div id="module1" class="page">
+                <div class="module-header">
+                    <h2 class="module-title">Módulo 1: Introducción y responsabilidades</h2>
+                    <div class="module-number">1</div>
+                </div>
+                
+                <div class="module-content">
+                    <div class="content-section">
+                        <h3>1.1 ¿Por qué cuidamos la información?</h3>
+                        <p>Para proteger datos de clientes, procesos, finanzas y el trabajo de todos (confidencialidad, integridad y disponibilidad).</p>
+                        <p>La ciberseguridad no es solo "técnica": son hábitos diarios y sentido común.</p>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>1.2 Quién hace qué en PRODAC</h3>
+                        <ul>
+                            <li><strong>Gerencia de TI:</strong> coordina seguridad y activa medidas ante incidentes.</li>
+                            <li><strong>Soporte/Infraestructura:</strong> identifica riesgos, ayuda a recuperar servicios, comunica pautas.</li>
+                            <li><strong>Tú (cada colaborador):</strong> usas bien los recursos, dudas con criterio, reportas lo raro de inmediato.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>1.3 Seguridad física visible</h3>
+                        <p>La sala de servidores tiene acceso controlado (por ejemplo, código o biometría) y señalización de "Acceso no autorizado".</p>
+                        <p>Si no estás autorizado, no ingresas ni "acompañas un minuto" a terceros.</p>
+                    </div>
+                    
+                    <div class="scenario">
+                        <h4>Caso práctico: "Proveedor curioso"</h4>
+                        <p>Un visitante pide "ver rápido" el Data Center.</p>
+                        <p><strong>Decisión correcta:</strong> no pasa sin autorización; reporta a tu jefe/TI.</p>
+                    </div>
+                    
+                    <div class="checklist">
+                        <h4>Checklist</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Sé a quién avisar si algo me parece sospechoso (jefe + TI).</li>
+                            <li><i class="fas fa-check-circle"></i> Entiendo que mis decisiones diarias también son seguridad.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="btn btn-outline" onclick="showPage('home')">
+                        <i class="fas fa-arrow-left"></i> Volver al Inicio
+                    </button>
+                    <button class="btn btn-primary" onclick="showPage('module2')">
+                        Siguiente Módulo <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Módulo 2 -->
+            <div id="module2" class="page">
+                <div class="module-header">
+                    <h2 class="module-title">Módulo 2: Tu cuenta, tus contraseñas y 2FA</h2>
+                    <div class="module-number">2</div>
+                </div>
+                
+                <div class="module-content">
+                    <div class="content-section">
+                        <h3>2.1 Reglas simples que sí debes saber</h3>
+                        <ul>
+                            <li>Tu usuario es personal e intransferible.</li>
+                            <li>Contraseñas con mínimo 6 caracteres y combinación de letras, números y símbolos.</li>
+                            <li>Cambios periódicos de contraseña.</li>
+                            <li>Doble factor (2FA) obligatorio: tu segundo candado (app como Microsoft Authenticator).</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>2.2 Buenos hábitos diarios</h3>
+                        <ul>
+                            <li>No reutilices la misma clave en trabajo y redes personales.</li>
+                            <li>No compartas tu contraseña ni los códigos 2FA.</li>
+                            <li>Considera un gestor de contraseñas aprobado por TI.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="scenario">
+                        <h4>Caso práctico: "URL casi igual"</h4>
+                        <p>Mensaje: "Actualiza tu contraseña" → https://secure-pr0dac.com/reset (cero por "o").</p>
+                        <p><strong>Decisión correcta:</strong> no entres; reporta a TI y elimina.</p>
+                    </div>
+                    
+                    <div class="checklist">
+                        <h4>Checklist</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> ¿Mi contraseña es solo mía (y distinta a mis redes)?</li>
+                            <li><i class="fas fa-check-circle"></i> ¿Tengo activo el 2FA?</li>
+                            <li><i class="fas fa-check-circle"></i> ¿Verifiqué que el dominio sea el oficial?</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="btn btn-outline" onclick="showPage('module1')">
+                        <i class="fas fa-arrow-left"></i> Módulo Anterior
+                    </button>
+                    <button class="btn btn-primary" onclick="showPage('module3')">
+                        Siguiente Módulo <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Módulo 3 -->
+            <div id="module3" class="page">
+                <div class="module-header">
+                    <h2 class="module-title">Módulo 3: Correo e Internet sin trampas</h2>
+                    <div class="module-number">3</div>
+                </div>
+                
+                <div class="module-content">
+                    <div class="content-section">
+                        <h3>3.1 Correo (uso laboral, adjuntos, enlaces)</h3>
+                        <ul>
+                            <li>El correo es solo laboral.</li>
+                            <li>Adjuntos ligeros por correo; si pesan mucho, OneDrive/SharePoint y compartir enlace.</li>
+                            <li>Evita enviar contraseñas en correos o dentro de los archivos.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>3.2 Internet (navegación filtrada)</h3>
+                        <ul>
+                            <li>La navegación está filtrada: se permiten sitios necesarios para el trabajo.</li>
+                            <li>No cambies configuraciones ni instales navegadores "raros".</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>3.3 Phishing (cómo huele y cómo evitarlo)</h3>
+                        <p>Señales: urgencia, faltas, remitente genérico, logotipos dudosos, enlaces con dominios "parecidos" al real, adjuntos inesperados.</p>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>3.4 Excel y la barra "Habilitar contenido"</h3>
+                        <p>Si no esperabas el archivo, no habilites macros. Confirma por teléfono con el remitente y consulta a TI.</p>
+                    </div>
+                    
+                    <div class="scenario">
+                        <h4>Caso práctico: "Factura urgente"</h4>
+                        <p>Llega FACTURA_URGENTE.xlsm; Excel pide "Habilitar contenido".</p>
+                        <p><strong>Decisión correcta:</strong> no habilitar; confirmar por teléfono y consultar a TI.</p>
+                    </div>
+                    
+                    <div class="checklist">
+                        <h4>Checklist</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> ¿Esperaba ese correo/adjunto?</li>
+                            <li><i class="fas fa-check-circle"></i> ¿El enlace es exactamente el dominio oficial (https + nombre correcto)?</li>
+                            <li><i class="fas fa-check-circle"></i> ¿Para archivos pesados usé OneDrive/SharePoint?</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="btn btn-outline" onclick="showPage('module2')">
+                        <i class="fas fa-arrow-left"></i> Módulo Anterior
+                    </button>
+                    <button class="btn btn-primary" onclick="showPage('module4')">
+                        Siguiente Módulo <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Módulo 4 -->
+            <div id="module4" class="page">
+                <div class="module-header">
+                    <h2 class="module-title">Módulo 4: Archivos, Excel, USB y tu equipo</h2>
+                    <div class="module-number">4</div>
+                </div>
+                
+                <div class="module-content">
+                    <div class="content-section">
+                        <h3>4.1 USB y discos externos</h3>
+                        <ul>
+                            <li>No conectes USB personales; suelen estar deshabilitados por seguridad, salvo autorización.</li>
+                            <li>El "USB olvidado" es un anzuelo (baiting).</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>4.2 Guardado y compartido de archivos</h3>
+                        <ul>
+                            <li>Usa carpetas corporativas y OneDrive/SharePoint; evita dejar bases sensibles en el Escritorio.</li>
+                            <li>No pongas contraseñas dentro de Excel ni al pie del correo.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>4.3 Tu equipo (software y bloqueo)</h3>
+                        <ul>
+                            <li>No instales/desinstales programas por tu cuenta.</li>
+                            <li>No cambies ajustes de red.</li>
+                            <li>Bloquea tu PC al moverte: Windows + L (además se bloquea sola tras un tiempo de inactividad).</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="scenario">
+                        <h4>Caso práctico: "USB anzuelo"</h4>
+                        <p>Encuentras un USB "Planillas" en una sala.</p>
+                        <p><strong>Decisión correcta:</strong> no conectarlo; llevar a TI.</p>
+                    </div>
+                    
+                    <div class="checklist">
+                        <h4>Checklist</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> ¿Evito conectar USB personales/desconocidos?</li>
+                            <li><i class="fas fa-check-circle"></i> ¿Comparto archivos pesados con enlace y permisos adecuados?</li>
+                            <li><i class="fas fa-check-circle"></i> ¿Bloqueo mi PC cuando me levanto (Win + L)?</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="btn btn-outline" onclick="showPage('module3')">
+                        <i class="fas fa-arrow-left"></i> Módulo Anterior
+                    </button>
+                    <button class="btn btn-primary" onclick="showPage('module5')">
+                        Siguiente Módulo <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Módulo 5 con Cards Interactivas -->
+            <div id="module5" class="page">
+                <div class="module-header">
+                    <h2 class="module-title">Módulo 5: Amenazas frecuentes (explicadas para usuarios)</h2>
+                    <div class="module-number">5</div>
+                </div>
+                
+                <div class="module-content">
+                    <div class="content-section">
+                        <h3>Tipos de amenazas comunes</h3>
+                        <p>Pasa el cursor sobre cada tarjeta para conocer los diferentes tipos de amenazas y cómo prevenirlas:</p>
+                    </div>
+                    
+                    <div class="cards-container">
+                        <div class="card">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <i class="fas fa-virus"></i>
+                                    <h3>Malware</h3>
+                                    <p>Haz clic para más info</p>
+                                </div>
+                                <div class="card-back">
+                                    <h4>Malware en simple</h4>
+                                    <ul>
+                                        <li><strong>Virus:</strong> programa que se propaga e infecta otros archivos/sistemas</li>
+                                        <li><strong>Troyano:</strong> se disfraza de algo útil para entrar y abre puertas al atacante</li>
+                                        <li><strong>Spyware/Keylogger:</strong> espía la actividad o registra teclas</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <i class="fas fa-lock"></i>
+                                    <h3>Ransomware</h3>
+                                    <p>Haz clic para más info</p>
+                                </div>
+                                <div class="card-back">
+                                    <h4>Ransomware</h4>
+                                    <p>Secuestra archivos (los cifra) y pide pago para liberarlos.</p>
+                                    <p><strong>Variantes comunes:</strong></p>
+                                    <ul>
+                                        <li>Scareware (falsas alertas)</li>
+                                        <li>Cryptolocker (cifrado fuerte)</li>
+                                        <li>Bloqueo de pantalla</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <i class="fas fa-fish"></i>
+                                    <h3>Phishing</h3>
+                                    <p>Haz clic para más info</p>
+                                </div>
+                                <div class="card-back">
+                                    <h4>Phishing y familia</h4>
+                                    <ul>
+                                        <li><strong>Phishing:</strong> correos/páginas falsas que imitan sitios reales</li>
+                                        <li><strong>Smishing:</strong> engaños por SMS o mensajería</li>
+                                        <li><strong>Vishing:</strong> llamadas que fingen ser del banco/soporte</li>
+                                        <li><strong>Spoofing:</strong> dominios o nombres casi iguales</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>5.4 Web confiable: HTTP vs. HTTPS, dominio exacto, cookies</h3>
+                        <ul>
+                            <li><strong>HTTP (sin candado):</strong> no ingreses credenciales sensibles en sitios externos.</li>
+                            <li><strong>HTTPS (con candado):</strong> cifra la conexión, pero igual verifica el dominio exacto.</li>
+                            <li><strong>Dominio:</strong> escribe el nombre oficial o usa marcadores corporativos.</li>
+                            <li><strong>Cookies:</strong> en trabajo, preferir "solo necesarias".</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>5.6 Hábitos que cortan la mayoría del riesgo</h3>
+                        <ul>
+                            <li>No abras lo que no esperas (correo/adjunto/link).</li>
+                            <li>Confirma por teléfono con el remitente cuando dudes.</li>
+                            <li>Mantén tu equipo actualizado y consulta a TI ante comportamientos extraños.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="btn btn-outline" onclick="showPage('module4')">
+                        <i class="fas fa-arrow-left"></i> Módulo Anterior
+                    </button>
+                    <button class="btn btn-primary" onclick="showPage('module6')">
+                        Siguiente Módulo <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Módulo 6 -->
+            <div id="module6" class="page">
+                <div class="module-header">
+                    <h2 class="module-title">Módulo 6: Llamadas, WhatsApp y mensajería</h2>
+                    <div class="module-number">6</div>
+                </div>
+                
+                <div class="module-content">
+                    <div class="content-section">
+                        <h3>6.1 Teléfono corporativo (uso laboral)</h3>
+                        <ul>
+                            <li>Uso laboral y con autorización.</li>
+                            <li>Tu clave telefónica es personal.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>6.2 Engaños por llamada/mensaje (vishing/smishing)</h3>
+                        <ul>
+                            <li><strong>Vishing:</strong> nadie debe pedirte contraseñas/códigos por teléfono.</li>
+                            <li><strong>Smishing:</strong> enlaces en SMS que solicitan datos o descargas.</li>
+                            <li>Regla de oro: si suena urgente o "demasiado bueno", probablemente es un engaño.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>6.3 Guion de respuesta de 3 pasos</h3>
+                        <ol>
+                            <li>No compartas datos ni sigas el enlace.</li>
+                            <li>Corta y/o deniega la solicitud.</li>
+                            <li>Reporta a TI por canal oficial.</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="btn btn-outline" onclick="showPage('module5')">
+                        <i class="fas fa-arrow-left"></i> Módulo Anterior
+                    </button>
+                    <button class="btn btn-primary" onclick="showPage('module7')">
+                        Siguiente Módulo <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Módulo 7 -->
+            <div id="module7" class="page">
+                <div class="module-header">
+                    <h2 class="module-title">Módulo 7: Cuando algo pasa: actuación y qué hace PRODAC</h2>
+                    <div class="module-number">7</div>
+                </div>
+                
+                <div class="module-content">
+                    <div class="content-section">
+                        <h3>7.1 Guion en 5 pasos ante sospecha/incidente</h3>
+                        <ol>
+                            <li>No abrir/clic/insertar.</li>
+                            <li>Captura evidencia (pantalla/fecha), sin reenviar archivos.</li>
+                            <li>Avisa a tu jefe y a TI de inmediato.</li>
+                            <li>Si la PC se comporta raro (alertas/cifrado), desconéctate de Internet.</li>
+                            <li>Espera instrucciones de TI (contención, restauración, etc.).</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>7.2 Lo que PRODAC ya tiene</h3>
+                        <ul>
+                            <li>Backups y procedimientos de restauración.</li>
+                            <li>Monitoreos periódicos de carpetas, Internet, red interna y equipos.</li>
+                            <li>Mantenimiento (equipos críticos/administrativos).</li>
+                            <li>Contingencias (sitios alternos para sistemas críticos, UPS/grupo electrógeno).</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="scenario">
+                        <h4>Caso práctico: "Lo instalé porque lo necesitaba"</h4>
+                        <p><strong>Decisión correcta:</strong> pide a TI herramientas aprobadas.</p>
+                    </div>
+                    
+                    <div class="checklist">
+                        <h4>Checklist</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> ¿Sé qué no debo hacer ante sospecha?</li>
+                            <li><i class="fas fa-check-circle"></i> ¿Sé que la empresa ya tiene copias/planes?</li>
+                            <li><i class="fas fa-check-circle"></i> ¿Sé que romper reglas tiene consecuencias?</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="btn btn-outline" onclick="showPage('module6')">
+                        <i class="fas fa-arrow-left"></i> Módulo Anterior
+                    </button>
+                    <button class="btn btn-primary" onclick="showPage('quiz')">
+                        Ir a Evaluación Final <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Evaluación Final -->
+            <div id="quiz" class="page">
+                <h2 class="module-title">Evaluación Final</h2>
+                
+                <div class="question">
+                    <div class="question-text">1. Tienes https:// y candado, pero dominio proveedores-prodac.secure-link.app. ¿Qué haces?</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question1" id="q1a">
+                        <label for="q1a">A) Confiar por el candado</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question1" id="q1b">
+                        <label for="q1b">B) Verificar el dominio raíz y acceder desde enlaces oficiales (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question1" id="q1c">
+                        <label for="q1c">C) Probar con usuario de prueba</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question1" id="q1d">
+                        <label for="q1d">D) Desactivar antivirus</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">2. Llega OC-12458.xlsm con barra "Habilitar contenido", no lo esperabas.</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question2" id="q2a">
+                        <label for="q2a">A) Habilitar y seguir</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question2" id="q2b">
+                        <label for="q2b">B) Convertidor online</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question2" id="q2c">
+                        <label for="q2c">C) No habilitar; confirmar por teléfono y consultar a TI (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question2" id="q2d">
+                        <label for="q2d">D) Reenviar a todos</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">3. Cookies en un sitio de conferencias.</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question3" id="q3a">
+                        <label for="q3a">A) Aceptar todas</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question3" id="q3b">
+                        <label for="q3b">B) Solo necesarias; ajustar si algo no carga (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question3" id="q3c">
+                        <label for="q3c">C) Bloquear todas</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question3" id="q3d">
+                        <label for="q3d">D) Aceptar todas y borrar historial</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">4. Virus vs. troyano (para usuarios).</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question4" id="q4a">
+                        <label for="q4a">A) Virus secuestra; troyano no cifra</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question4" id="q4b">
+                        <label for="q4b">B) Virus se propaga e infecta; troyano se disfraza para entrar (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question4" id="q4c">
+                        <label for="q4c">C) Virus solo móvil; troyano solo PC</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question4" id="q4d">
+                        <label for="q4d">D) Son lo mismo</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">5. ¿Cuál de los siguientes elementos NO garantiza que un correo sea legítimo (no phishing)?</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question5" id="q5a">
+                        <label for="q5a">A) Remitente genérico o con errores de nombre</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question5" id="q5b">
+                        <label for="q5b">B) Tono de urgencia o amenaza</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question5" id="q5c">
+                        <label for="q5c">C) Enlace con caracteres parecidos al oficial (homógrafos)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question5" id="q5d">
+                        <label for="q5d">D) Pie legal y logotipo en alta calidad (Correcta)</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">6. Debes compartir 48 MB en Excel.</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question6" id="q6a">
+                        <label for="q6a">A) Enviar por correo adjunto</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question6" id="q6b">
+                        <label for="q6b">B) Dividir en 3 correos</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question6" id="q6c">
+                        <label for="q6c">C) OneDrive/SharePoint y compartir enlace (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question6" id="q6d">
+                        <label for="q6d">D) Subirlo a un drive personal</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">7. Una extensión desconocida te pide cámara y micrófono durante una reunión.</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question7" id="q7a">
+                        <label for="q7a">A) Aceptar: si no, no funciona</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question7" id="q7b">
+                        <label for="q7b">B) Denegar permisos; usar solo la app oficial y consultar a TI si persiste (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question7" id="q7c">
+                        <label for="q7c">C) Cambiar a datos móviles y aceptar</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question7" id="q7d">
+                        <label for="q7d">D) Reiniciar y aceptar</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">8. Ves http://intranet.prodac.local (sin https) en la LAN corporativa.</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question8" id="q8a">
+                        <label for="q8a">A) Bloquear el sitio por inseguro</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question8" id="q8b">
+                        <label for="q8b">B) Validar que sea recurso interno; nunca enviar credenciales sensibles por HTTP externo (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question8" id="q8c">
+                        <label for="q8c">C) Ignorarlo, siempre es seguro</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question8" id="q8d">
+                        <label for="q8d">D) Forzar https manualmente</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">9. Un jefe pide por WhatsApp crear un usuario “urgente”.</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question9" id="q9a">
+                        <label for="q9a">A) Sí, si es el jefe</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question9" id="q9b">
+                        <label for="q9b">B) No; debe gestionarse formalmente por correo con aprobaciones (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question9" id="q9c">
+                        <label for="q9c">C) Sí, pero sin permisos</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question9" id="q9d">
+                        <label for="q9d">D) Sí, si llamo a TI y aviso de palabra</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">10. Te solicitan por llamada el código 2FA del Authenticator “para validar tu identidad”.</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question10" id="q10a">
+                        <label for="q10a">A) Sí, si la voz suena confiable</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question10" id="q10b">
+                        <label for="q10b">B) Nunca; cuelga y reporta a TI (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question10" id="q10c">
+                        <label for="q10c">C) Dar solo la mitad del código</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question10" id="q10d">
+                        <label for="q10d">D) Sí, si es un proveedor conocido</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">11. Encuentras un USB “Informe URGENTE”.</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question11" id="q11a">
+                        <label for="q11a">A) Conectarlo y revisar por ti mismo</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question11" id="q11b">
+                        <label for="q11b">B) Llevarlo a casa y abrirlo allí</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question11" id="q11c">
+                        <label for="q11c">C) No conectarlo; entregarlo a TI (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question11" id="q11d">
+                        <label for="q11d">D) Enviarlo por mensajería al proveedor</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">12. Te ausentas 3 minutos de tu puesto.</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question12" id="q12a">
+                        <label for="q12a">A) Apagar el monitor</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question12" id="q12b">
+                        <label for="q12b">B) Bajar el brillo</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question12" id="q12c">
+                        <label for="q12c">C) Bloquear con Windows + L (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question12" id="q12d">
+                        <label for="q12d">D) Nada, “no pasa nada”</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">13. Ves nota de rescate y archivos con extensiones extrañas (posible ransomware).</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question13" id="q13a">
+                        <label for="q13a">A) Pagar rápido para no perder tiempo</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question13" id="q13b">
+                        <label for="q13b">B) Desconectarte de la red, no abrir nada y avisar a TI (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question13" id="q13c">
+                        <label for="q13c">C) Enviar la nota por WhatsApp al equipo</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question13" id="q13d">
+                        <label for="q13d">D) Reiniciar 10 veces</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">14. Necesitas entrar a un portal no laboral “solo 5 minutos”.</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question14" id="q14a">
+                        <label for="q14a">A) Abrirlo sin más</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question14" id="q14b">
+                        <label for="q14b">B) Pedir el usuario de un colega</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question14" id="q14c">
+                        <label for="q14c">C) Solicitar acceso a tu jefe (si es necesario para el trabajo) (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question14" id="q14d">
+                        <label for="q14d">D) Abrir desde el celular corporativo</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">15. Instalaste software no autorizado y causó un incidente.</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question15" id="q15a">
+                        <label for="q15a">A) No pasa nada si lo desinstalas</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question15" id="q15b">
+                        <label for="q15b">B) Sanción progresiva según gravedad y recurrencia (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question15" id="q15c">
+                        <label for="q15c">C) Solo una llamada de atención</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question15" id="q15d">
+                        <label for="q15d">D) Premio por iniciativa</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">16. (Andrea) Banner de cookies: “Aceptar todas / Solo necesarias / Configurar”.</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question16" id="q16a">
+                        <label for="q16a">A) Aceptar todas por rapidez</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question16" id="q16b">
+                        <label for="q16b">B) Solo necesarias; ajustar en Configurar si hace falta (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question16" id="q16c">
+                        <label for="q16c">C) Rechazar todas siempre</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question16" id="q16d">
+                        <label for="q16d">D) Borrar cookies tras cada clic</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">17. (Luis) URL homógrafa: https://microsоft.com-login.co/ (la “o” es cirílica).</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question17" id="q17a">
+                        <label for="q17a">A) Confiar porque tiene https</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question17" id="q17b">
+                        <label for="q17b">B) No entrar; escribir el dominio oficial o usar marcadores corporativos y reportar a TI (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question17" id="q17c">
+                        <label for="q17c">C) Probar con otra cuenta</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question17" id="q17d">
+                        <label for="q17d">D) Abrirlo en el móvil</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">18. (Kimberley) Esperaba macros, pero el remitente es pagos@proovedor.com (doble “o”).</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question18" id="q18a">
+                        <label for="q18a">A) Habilitar macros igual, porque sí esperaba archivo</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question18" id="q18b">
+                        <label for="q18b">B) No habilitar; validar por teléfono el remitente exacto y pedir reenvío por canales oficiales (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question18" id="q18c">
+                        <label for="q18c">C) Pasar por convertidor online</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question18" id="q18d">
+                        <label for="q18d">D) Reenviar a varios para que lo prueben</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">19. (Susan) WhatsApp: “TI PRODAC: envía tu código 2FA para validar acceso”.</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question19" id="q19a">
+                        <label for="q19a">A) Enviar por privado para que nadie lo vea</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question19" id="q19b">
+                        <label for="q19b">B) Nunca; ningún área pide códigos. Reportar a TI por canal oficial (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question19" id="q19c">
+                        <label for="q19c">C) Compartir solo la mitad del código</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question19" id="q19d">
+                        <label for="q19d">D) Enviar si el logo se ve nuevo</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">20. (Giovanna) Debe enviar 12 fotos (41 MB).</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question20" id="q20a">
+                        <label for="q20a">A) Comprimir y adjuntar en correo</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question20" id="q20b">
+                        <label for="q20b">B) Subir a un drive personal</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question20" id="q20c">
+                        <label for="q20c">C) OneDrive/SharePoint y enviar enlace con permisos (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question20" id="q20d">
+                        <label for="q20d">D) Enviar de a 2 por correo</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">21. (Ariana) Un sitio de sorteos pide cámara y micrófono.</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question21" id="q21a">
+                        <label for="q21a">A) Aceptar y luego cerrar</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question21" id="q21b">
+                        <label for="q21b">B) Denegar; no hay razón laboral para ese sitio (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question21" id="q21c">
+                        <label for="q21c">C) Aceptar si tiene https</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question21" id="q21d">
+                        <label for="q21d">D) Aceptar y tapar la cámara con la mano</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">22. (Mario) Llamada del “banco”: pide código 2FA “por fraude”.</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question22" id="q22a">
+                        <label for="q22a">A) Proveer el código para acelerar la ayuda</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question22" id="q22b">
+                        <label for="q22b">B) Pedir un correo informal con el sello del banco</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question22" id="q22c">
+                        <label for="q22c">C) Cortar y llamar tú al número oficial del banco; reportar a TI (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question22" id="q22d">
+                        <label for="q22d">D) Compartir el código mañana</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">23. (Miguel) Excolaborador sigue recibiendo correos internos.</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question23" id="q23a">
+                        <label for="q23a">A) Ignorar: ya renunció</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question23" id="q23b">
+                        <label for="q23b">B) Reportar a TI y al jefe; baja, posible redirección y respaldo (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question23" id="q23c">
+                        <label for="q23c">C) Cambiarle la clave por tu cuenta</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question23" id="q23d">
+                        <label for="q23d">D) Reenviar sus correos a un Gmail</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">24. (Fabricio) Un proveedor insiste en “ver rápido” el Data Center.</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question24" id="q24a">
+                        <label for="q24a">A) Pasarlo 2 minutos, sin fotos</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question24" id="q24b">
+                        <label for="q24b">B) No permitir acceso sin autorización formal; sala con control de acceso (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question24" id="q24c">
+                        <label for="q24c">C) Permitir fotos desde la puerta</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question24" id="q24d">
+                        <label for="q24d">D) Dejar una ventana abierta</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="question">
+                    <div class="question-text">25. (Manuel) Aparecen extensiones raras y un TXT de rescate en una PC de planta.</div>
+                    <div class="options">
+                        <div class="option">
+                        <input type="radio" name="question25" id="q25a">
+                        <label for="q25a">A) Seguir trabajando para no perder tiempo</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question25" id="q25b">
+                        <label for="q25b">B) Desconectar de la red, no abrir nada, avisar a TI y preservar evidencia; esperar instrucciones (Correcta)</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question25" id="q25c">
+                        <label for="q25c">C) Pagar en criptomonedas</label>
+                        </div>
+                        <div class="option">
+                        <input type="radio" name="question25" id="q25d">
+                        <label for="q25d">D) Reinstalar Windows sin avisar</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    
+                    <!-- Más preguntas irían aquí -->
+                    
+                    <div class="navigation-buttons">
+                        <button class="btn btn-outline" onclick="showPage('module7')">
+                            <i class="fas fa-arrow-left"></i> Volver al Módulo 7
+                        </button>
+                        <button class="btn btn-primary" onclick="submitQuiz()">
+                            Enviar Evaluación <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <footer>
+        <p>© 2023 PRODAC - Curso de Ciberseguridad para Usuarios No Técnicos</p>
+    </footer>
+
+    <script>
+        //Muestra PDF en el iframe
+        function openPDFModal() {
+            document.getElementById("pdfModal").style.display = "block";
+            }
+            function closePDFModal() {
+            document.getElementById("pdfModal").style.display = "none";
+            }
+        // Estado del curso
+        const courseState = {
+            currentPage: 'home',
+            progress: 0,
+            completedModules: []
+        };
+        
+        // Mostrar página específica
+        function showPage(pageId) {
+            // Ocultar todas las páginas
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Mostrar la página solicitada
+            document.getElementById(pageId).classList.add('active');
+            
+            // Actualizar menú lateral
+            document.querySelectorAll('.module-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('data-page') === pageId) {
+                    item.classList.add('active');
+                }
+            });
+            
+            // Actualizar estado
+            courseState.currentPage = pageId;
+            
+            // Si es un módulo nuevo, marcarlo como completado y actualizar progreso
+            if (pageId.startsWith('module') && !courseState.completedModules.includes(pageId)) {
+                courseState.completedModules.push(pageId);
+                updateProgress();
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Actualizar barra de progreso
+        function updateProgress() {
+            const totalModules = 7;
+            const completed = courseState.completedModules.length;
+            courseState.progress = Math.round((completed / totalModules) * 100);
+            
+            document.getElementById('progress-fill').style.width = `${courseState.progress}%`;
+            document.getElementById('progress-text').textContent = `${courseState.progress}% Completado`;
+        }
+        
+        // Enviar evaluación
+        function submitQuiz() {
+            // Aquí iría la lógica para calificar el quiz
+            alert('¡Evaluación enviada! En una implementación real, esto calificaría tus respuestas.');
+            
+            // Marcar el curso como completado
+            courseState.progress = 100;
+            document.getElementById('progress-fill').style.width = '100%';
+            document.getElementById('progress-text').textContent = '100% Completado';
+        }
+        
+        // Inicializar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configurar event listeners para el menú lateral
+            document.querySelectorAll('.module-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                });
+            });
+            
+            // Inicializar barra de progreso
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
