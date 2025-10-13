@@ -40,9 +40,10 @@ setupQuiz(
 
 setupQuiz(
     "quiz3-form", "submit3-btn", "quiz3-feedback",
-    "¡Correcto! Nunca habilites macros en archivos inesperados. Confirmar y consultar a TI es la mejor decisión.",
-    "Incorrecto. Aunque conozcas al remitente, los archivos pueden ser falsificados. Nunca habilites macros sin confirmar."
+    "¡Correcto! Detectaste un intento de phishing: siempre revisa el dominio, no abras enlaces sospechosos y reporta a TI.",
+    "Incorrecto. Nunca hagas clic en enlaces o archivos dudosos: verifica el remitente y dominio antes de actuar."
 );
+
 setupQuiz(
   "quiz4-form", "submit4-btn", "quiz4-feedback",
   "¡Correcto! Evitaste el USB anzuelo, no habilitaste macros y compartiste con permisos adecuados.",
