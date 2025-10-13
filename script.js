@@ -717,6 +717,17 @@ const ALL_QUESTIONS = [
   }
 ];
 
+ALL_QUESTIONS.forEach(q => {
+  // Guarda las opciones junto a su índice original
+  const pairs = q.options.map((opt, i) => ({ opt, i }));
+  // Mezcla las opciones de forma aleatoria
+  const shuffled = shuffle(pairs);
+  // Actualiza las opciones ya mezcladas
+  q.options = shuffled.map(p => p.opt);
+  // Recalcula el nuevo índice de la respuesta correcta
+  q.correctIndex = shuffled.findIndex(p => p.i === q.correctIndex);
+});
+
 // Parámetros del examen
 const EXAM_TOTAL = 30;   // tamaño del pool (informativo)
 const EXAM_SHOW = 15;    // cuántas se renderizan por intento
